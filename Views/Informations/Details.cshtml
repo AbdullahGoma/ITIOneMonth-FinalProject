@@ -1,0 +1,148 @@
+﻿@model Information
+
+@{
+    ViewData["Title"] = "Details for King";
+}
+
+<div class="video-wrapper" id="bg">
+    <video autoplay muted loop>
+        <source src="~/MyDesign/videos/pyramid.mp4" type="video/mp4">
+    </video>
+</div>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Come To Egypt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Tickets" asp-action="Index"><i class="bi bi-film"></i> Tickets</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-gear"></i> Management
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-controller="Tourists" asp-action="Index"><i class="bi bi-person-square"></i>Tourists</a>
+                            <a class="dropdown-item" asp-controller="Employees" asp-action="Index"><i class="bi bi-headset"></i>Employees</a>
+                            <a class="dropdown-item" asp-controller="Locations" asp-action="Index"><i class="bi bi-geo-alt-fill"></i>Locations</a>
+                            <a class="dropdown-item" asp-controller="Informations" asp-action="Index"><i class="bi bi-info-circle"></i>Informations</a>
+                        </div>
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+
+                    }
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0" asp-controller="Tickets" asp-action="Filter" style="padding-right: 25px;">
+                    <input name="searchString" type="text" class="form-control" placeholder="Search for a ticket..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Details for @Model.KingName</h1>
+        </p>
+
+        <div class="row p-3 mb-2 bg-dark text-white bg-opacity-10">
+            <div class="col-md-8 offset-2">
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group text-center">
+                                <img class="border-info rounded-circle" style="max-width: 150px" id="ProfilePicturePreview" />
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ProfilePictureURL" class="control-label"></label>
+                                <input asp-for="ProfilePictureURL" class="form-control" readonly />
+                                <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="KingName" class="control-label"></label>
+                                <textarea asp-for="KingName" class="form-control" disabled></textarea>
+                                <span asp-validation-for="KingName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Bdate" class="control-label"></label>
+                                <textarea asp-for="Bdate" class="form-control" disabled></textarea>
+                                <span asp-validation-for="Bdate" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Gender" class="control-label"></label>
+                                <textarea asp-for="Gender" class="form-control" disabled></textarea>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="TicketId" class="control-label"></label>
+                                <input asp-for="TicketId" type="number" class="form-control" disabled />
+                                <span asp-validation-for="TicketId" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="LocationId" class="control-label"></label>
+                                <input asp-for="LocationId" type="number" class="form-control" disabled />
+                                <span asp-validation-for="LocationId" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="Bio" class="control-label"></label>
+                                    <textarea asp-for="Bio" class="form-control" disabled></textarea>
+                                    <span asp-validation-for="Bio" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group" style="margin-top: 10px;">
+                        <a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.Id">Edit </a>
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            var output = document.getElementById('ProfilePicturePreview');
+            output.src = $("#ProfilePictureURL").val();
+        })
+
+    </script>
+}
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2023 - Come To Egypt
+    </div>
+</footer>
+

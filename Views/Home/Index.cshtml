@@ -1,0 +1,215 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+    <!-- Landing page -->
+
+    <div class="video-wrapper" id="bg">
+        <video autoplay muted loop>
+        <source src="~/MyDesign/videos/pyramid.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <section id="landing">
+    <h1>Come To Egypt</h1>
+    <p>Let's Explore the great places in Egypt.</p>
+        <button type="button" name="button" onclick="enterSite();">Enter</button>
+    </section>
+    <!-- dimmed page -->
+    <div id="dimmed-bg"></div>
+
+    <section id="full-site">
+
+        <aside id="register-side-bar">
+            <div id="empty-section"></div>
+            <section id="visible-section">
+                <span id="call-num"><i class="fas fa-phone"></i>1-800-232-2312</span>
+                <h4 id="reg">Register</h4>
+            </section>
+
+            <section id="form-section">
+                <h2>Register your account!</h2>
+                <form method="post" autocomplete="off" asp-action="Create" asp-controller="Tourists">
+                    <input type="email" name="Email" placeholder="Email" required>
+                    <input type="password" name="Password" placeholder="Password" required>
+                    <input type="password" name="ConfirmPassword" placeholder="Confirm Password" required>
+                    <input type="submit" name="submit" value="Register" >
+                </form>
+                <p>Already have an account? <a href="#">Login</a>.</p>
+            </section>
+
+        </aside>
+
+
+        <section id="above-fold">
+            <nav>
+                <ul>
+                    <li><a asp-controller="Home" asp-action="Index" class="text-secondary">Come To Egypt</a></li>
+                    <li><a class="text-secondary"  asp-controller="Tickets" asp-action="Index">Booking Ticket Now</a></li>
+                    <li><a href="#" class="text-secondary">Deal of the week</a></li>
+                    <li><a href="#" class="text-secondary">Testimonials</a></li>
+                    <li><a href="#" class="text-secondary">Become a sponser</a></li>
+                </ul>
+            </nav>
+
+            <article>
+                <h1>Book your next vacation with us!</h1>
+                <button type="button" name="button">Get Started</button>
+
+            </article>
+        </section>
+
+
+        <section id="info-section">
+            <article>
+                <figure></figure>
+                <div>
+                    <h2>Places of Worship</h2>
+                    <p>
+                        Places of worship are considered sacred places for Egyptians and therefore tourists from abroad should respect the serious mentality about the places of worship. For Muslims, these are called mosques., and the places of worship for Christians are called churches. In Egypt, both mosques and churches are numerous.
+
+                        People follow the rules of taking out their shoes before entering the sacred ground. Women and men are requested to cover up their bare heads and heads. It is always wise to wear a somber and covered dress, especially when visiting a mosque. Friday is considered the most sacred day of the week.
+                    </p>
+                </div>
+            </article>
+            <article>
+                <figure></figure>
+                <div>
+                    <h2>Egyptian People</h2>
+                    <p>
+                        Egypt's population is quite high, about 110 million, with the majority being Sunni Islam at about 100 million. Out of the rest, 8-9 million are Coptic Christians. Sunni and Copt are both sensitive and adhere to their respective religious rules and customs. In Egypt, family integrity matters a lot and the head of the family takes the entire responsibility to run the family in a proper manner, with a great focus on behavior. The family integrity of the Egyptians is in sharp contrast to the nuclear family concept in the West. Here people put special respect for family values and family relations. Perhaps this is one of the reasons, traveling in the City of Egypt is safer than any other top global destination, even for women traveling alone.
+
+                        The lifestyle of Arabs is often different and often found enveloped with some mysterious facts. As a result, people often find these people mystic and sometimes offbeat. But in reality, these people are truly a friend in heart; they love people and greet people with the best hospitality. They often like to call people at their homes. However, if someone expresses disrespect, an unfriendly gestures, these people take it as an insult and become aggressive.
+
+                        The rules and regulations common in Egypt may seem quite a bit different, which can make people outsiders at Egypt at times confused. In order to understand the air of Egypt, you need to learn about their culture, customs, and family values. Once you're able to understand and respect their values, traveling in Egypt will be even fuller of enjoyment and excitement.
+
+                        Commonly, Egyptians are quite adjustable in nature and they love to help people. If you ask them any question, they will answer it happily. One interesting behavior is whenever you will ask an Egyptian something, he will call some other people over to discuss the question and they will try their best to offer you the correct answer to the question asked.
+
+                        Most Muslims in Egypt are not accustomed to drinking alcohol but hardly have any objection to others drinking. But it is important that if you drink alcohol while in Egypt, you should have it in moderation. In Egypt, the consumption of pork is not that common but in places where pork is unavailable, you will still find plenty of other options.
+                    </p>
+                </div>
+            </article>
+            <article>
+                <figure></figure>
+                <div>
+                    <h2>Egypt traditions</h2>
+                    <p>
+                        Egypt's culture and traditions are truly cosmopolitan and the perfect fusion of many of the other cultures and traditions here. Traditions in Egypt, introduced by pharaohs are prevalent as well as the tribal culture and traditions, and even the customs of invaders are somehow seen present amidst modern Egypt. It's like a melting pot here, where multiple cultures and ethnic traditions have created a new concept of living and a mentality that embraces new and advanced thinking that creates a liberal ambiance all around.
+
+                        This liberal attitude is on display in Egyptians' friendly behavior toward foreigners and tourists. If asked, the people of Egypt will always share their service and enthusiasm with the people whom hardly they know. In Egypt, with its excellent travel attractions and cultural ambiance, the smiling faces of the locales are an added charm. All these sweet fragments are the best part of the visit to Egypt program and will remain with you as a memory forever. The Egyptian culture immerses you into the traditions, languages, and history of civilizations of ancient places.
+                    </p>
+                </div>
+            </article>
+        </section>
+
+
+        <section id="current-users">
+            <header>
+                <h4>Total Vacations Booked This Month</h4>
+                <h3 id="total-users">212,129</h3>
+            </header>
+        </section>
+
+        <section id="locations">
+            <h2>Already a member?</h2>
+            <a href="#" id="header-link">Book a Ticket now!</a>
+            <input type="text" name="search" placeholder="Search Available Locations" autocomplete="off">
+            <h4>Find Location By Governorate</h4>
+            <ul>
+                <li><a href="#" class="text-secondary">Giza</a></li>
+                <li><a href="#" class="text-secondary">Cairo</a></li>
+                <li><a href="#" class="text-secondary">Sharm El Sheikh</a></li>
+                <li><a href="#" class="text-secondary">Dakahlia</a></li>
+                <li><a href="#" class="text-secondary">Aswan</a></li>
+                <li><a href="#" class="text-secondary">Luxor</a></li>
+                <li><a href="#" class="text-secondary">Hurghada</a></li>
+                <li><a href="#" class="text-secondary">Alexandrea</a></li>
+                <li><a href="#" class="text-secondary">Matrouh</a></li>
+                <li><a href="#" class="text-secondary">Northern Coast</a></li>
+                <li><a href="#" class="text-secondary">Sinai</a></li>
+            </ul>
+        </section>
+
+
+        <section id="testimonials">
+            <div id="testimonials-bg"></div>
+
+            <article>
+                <header>
+                    <h2>Our Satisfied Users</h2>
+                    <h5>Rated <span>9.6/10</span><br> By our verified users</h5>
+                </header>
+
+                <section id="reviews">
+                    <div class="review">
+                        <div class="reviewer-details">
+                            <figure></figure>
+                            <div class="details">
+                                <div class="name">Greg Anderson</div>
+                                <div class="from">Avid Forest Travel User</div>
+                            </div>
+                        </div>
+                        <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                    <div class="review">
+                        <div class="reviewer-details">
+                            <figure></figure>
+                            <div class="details">
+                                <div class="name">Suzie Smith</div>
+                                <div class="from">CEO at GetBizzie</div>
+                            </div>
+                        </div>
+                        <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                    <div class="review">
+                        <div class="reviewer-details">
+                            <figure></figure>
+                            <div class="details">
+                                <div class="name">Marie Arden</div>
+                                <div class="from">I'm a globetrotter!</div>
+                            </div>
+                        </div>
+                        <p class="review-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </section>
+                <a href="#">Leave a review</a>
+                <a href="#">See all customer reviews</a>
+            </article>
+
+        </section>
+
+        <section id="weekly-deal">
+            <h2>The Religious Part of Egypt</h2>
+            <article id="deal">
+                <div id="deal-details">
+                <h3>amr ibn al-as mosque, Old Cairo, Cairo</h3>
+                <p>The Mosque of Amr ibn al-As, or Taj al-Jawame', or Masjid Ahl ar-Rayah , ( 'Mosque of the Banner Bearers'), was originally built in 641–642 AD, as the center of the newly founded capital of Egypt, Fustat. 
+                    The original structure was the first mosque ever built in Egypt and the whole of Africa. 
+                    For 600 years, the mosque was also an important center of Islamic learning until Al-Muizz's Al-Azhar Mosque in Islamic Cairo replaced it.
+                    Through the twentieth century, it was the fourth largest mosque in the Islamic world.
+                </p>
+                <a href="https://en.wikipedia.org/wiki/Amr_ibn_al-As_Mosque" target="_blank">Read More.</a>
+                </div>
+                <figure></figure>
+            </article>
+        </section>
+
+
+        <footer id="footer">
+            <h5>Come To Egypt</h5>
+            <h6>Find us on Social Media</h6>
+            <div id="social-icons">
+                <img src="~/MyDesign/images/social/facebook.png" alt="A facebook icon.">
+                <img src="~/MyDesign/images/social/instagram.png" alt="A instagram icon.">
+                <img src="~/MyDesign/images/social/pinterest.png" alt="A pinterest icon.">
+                <img src="~/MyDesign/images/social/twitter.png" alt="A twitter icon.">
+                <img src="~/MyDesign/images/social/youtube.png" alt="A youtube icon.">
+            </div>
+            <hr>
+            <h6>Copyright 2023 - All Rights Reserved </h6>
+
+        </footer>
+
+
+    </section>
+
+

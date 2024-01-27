@@ -1,0 +1,142 @@
+﻿@* Define model *@
+@model IEnumerable<Ticket>
+
+@* Define ViewData *@
+
+@{
+    ViewData["Title"] = "List Of Tickets";
+}
+
+<div class="video-wrapper" id="bg">
+    <video autoplay muted loop>
+        <source src="~/MyDesign/videos/pyramid.mp4" type="video/mp4">
+    </video>
+</div>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Come To Egypt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Tickets" asp-action="Index"><i class="bi bi-film"></i> Tickets</a>
+                    </li>
+
+                    
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-gear"></i>Management
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="Tourists" asp-action="Index"><i class="bi bi-person-square"></i>Tourists</a>
+                                <a class="dropdown-item" asp-controller="Employees" asp-action="Index"><i class="bi bi-headset"></i>Employees</a>
+                                <a class="dropdown-item" asp-controller="Locations" asp-action="Index"><i class="bi bi-geo-alt-fill"></i>Locations</a>
+                                <a class="dropdown-item" asp-controller="Informations" asp-action="Index"><i class="bi bi-info-circle"></i>Informations</a>
+                            </div>
+                        </li>
+                    }   
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0" asp-controller="Tickets" asp-action="Filter" style="padding-right: 25px;">
+                    <input name="searchString" type="text" class="form-control" placeholder="Search for a ticket..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+@* Write Code *@
+
+<div class="row p-3 mb-2 bg-dark text-black bg-opacity-10">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Id
+                                    <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        
+                                    }
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImageURL" width="100%" alt="@item.GovernorateCategory">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@item.Description</p>
+                            <p class="card-text"><b>Ticket: </b>@item.Id</p>
+                            <p class="card-text"><b>Governorate: </b>@item.GovernorateCategory</p>
+                            <p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>End Date: </b>@item.EndDate.ToString("dd MMM yy")</p>
+                            <p class="card-text ">
+                                <b>Status: </b>
+                                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                {
+                                    <span class="badge bg-success text-white">AVAILABLE</span>
+                                }
+                                else if (DateTime.Now > item.EndDate)
+                                {
+                                    <span class="badge bg-danger text-white">EXPIRED</span>
+                                }
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill"></i> Show Details 
+                                </a>
+                                
+                                @* <a class="btn btn-danger text-whitea" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Delete </a> | *@ 
+                                <a class="btn btn-success text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")"
+                                   asp-controller="Orders"
+                                   asp-action="AddItemToShoppingCart"
+                                   asp-route-id="@item.Id">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Price.ToString("c"))
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <div class="text-white" style="position:fixed; right:25px; bottom:25px;">
+        <a asp-controller="Tickets" asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add New
+        </a>
+    </div>
+}
+
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2023 - Come To Egypt
+    </div>
+</footer>
+
